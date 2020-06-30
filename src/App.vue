@@ -1,32 +1,27 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="app">根组件
+    <van-button type="primary">主要按钮</van-button>
+    <van-field v-model="value" label="文本" placeholder="请输入用户名" />
+    <div class="fa"></div>
   </div>
+
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data () {
+    return {
+      value: ''
     }
   }
+}
+</script>
+
+<style>
+.fa {
+  width:300px;
+  height: 300px;
+  font-size: 20px;
+  background-color: rgb(200, 243, 200);
 }
 </style>
