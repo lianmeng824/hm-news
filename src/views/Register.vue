@@ -1,5 +1,7 @@
 <template>
-  <div> denglu</div>
+  <div>
+      <hm-header></hm-header>
+  </div>
 </template>
 
 <script>
