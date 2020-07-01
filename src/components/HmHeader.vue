@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .hm-herder{
     height: 40px;
     border-bottom: 1px solid #ccc;

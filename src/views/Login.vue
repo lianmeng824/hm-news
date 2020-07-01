@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <hm-header>登录</hm-header>
     <hm-login></hm-login>
     <van-form @submit="onSubmit">
@@ -22,11 +22,11 @@
         </van-button>
       </div>
     </van-form>
+    <p>没有账号？去 <router-link to="/register">注册</router-link></p>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -48,9 +48,15 @@ export default {
       }
     }
   },
+  created() {
+    const { username, password } = this.$route.params
+    this.username = username
+    this.password = password
+    // console.log(this.$route.params)
+  },
   methods: {
     async onSubmit() {
-      const res = await axios.post('http://localhost:3000/login', {
+      const res = await this.$axios.post('/login', {
         username: this.username,
         password: this.password
       })
@@ -69,4 +75,15 @@ export default {
 }
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.login {
+  p {
+    font-size: 16px;
+    text-align: right;
+    padding-right: 20px;
+    a {
+      color: #d81e06;
+    }
+  }
+}
+</style>
