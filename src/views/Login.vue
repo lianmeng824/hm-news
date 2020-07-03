@@ -60,13 +60,14 @@ export default {
         username: this.username,
         password: this.password
       })
-      // console.log(res)
 
       const { statusCode, message, data } = res.data
       if (statusCode === 200) {
+        console.log(res.data)
         this.$toast.success(message)
-        localStorage.setItem('token', data.token)
-        this.$router.push('/')
+        localStorage.setItem('token', data.token) // 存token
+        localStorage.setItem('userId', data.user.id) // 存ID
+        this.$router.push('/user')
       } else {
         this.$toast.fail(message)
       }
