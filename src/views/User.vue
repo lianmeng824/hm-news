@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="nav">
-      <hm-navbar>
+      <hm-navbar @click="$router.push('/myfollow')">
         <template>我的关注</template>
         <template #content>关注的用户</template>
       </hm-navbar>
@@ -48,20 +48,32 @@ export default {
     }
   },
   methods: {
-    logout() {
-      this.$dialog.confirm({
-        title: '温馨提示',
-        message: '确定要退出登录吗？'
-      })
-        .then(() => { // 确定退出的思路
-          localStorage.removeItem('token')
-          localStorage.removeItem('userId')
-          this.$router.push('/login')
-          this.$toast.success('退出成功')
+    async logout() {
+      try {
+        await this.$dialog.confirm({
+          title: '温馨提示',
+          message: '确定要退出登录吗？'
         })
-        .catch(() => { // 取消的思路
-          this.$toast('取消退出')
-        })
+        localStorage.removeItem('token')
+        localStorage.removeItem('userId')
+        this.$router.push('/login')
+        this.$toast.success('退出成功')
+      } catch {
+        this.$toast('取消退出')
+      }
+      // await this.$dialog.confirm({
+      //   title: '温馨提示',
+      //   message: '确定要退出登录吗？'
+      // })
+      //   .then(() => { // 确定退出的思路
+      //     localStorage.removeItem('token')
+      //     localStorage.removeItem('userId')
+      //     this.$router.push('/login')
+      //     this.$toast.success('退出成功')
+      //   })
+      //   .catch(() => { // 取消的思路
+      // this.$toast('取消退出')
+      //   })
     }
   },
   async created() {
