@@ -4,14 +4,24 @@ import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import User from '../views/User.vue'
 import UserEdit from '../views/UserEdit.vue'
+import MyFollow from '../views/MyFollow.vue'
 
 Vue.use(VueRouter)
+
+// 解决地址栏报错的问题 原因重复的跳转到同一个路由
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
 const router = new VueRouter({
   routes: [
     { path: '/login', component: Login, name: 'login' },
     { path: '/register', component: Register, name: 'register' },
     { path: '/user', component: User, name: 'user' },
-    { path: '/user-edit', component: UserEdit, name: 'user-edit' }
+    { path: '/user-edit', component: UserEdit, name: 'user-edit' },
+    { path: '/myfollow', component: MyFollow }
+
   ]
 })
 

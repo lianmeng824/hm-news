@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import 'amfe-flexible'
-import { Button, Field, Form, Toast } from 'vant'
+import { Button, Field, Form, Toast, Dialog, RadioGroup, Radio, Uploader } from 'vant'
 import './styles/common.less'
 import './styles/iconfont.less'
 import router from './router'
@@ -49,6 +49,11 @@ Vue.use(Button) // 全局注册 vant-button
 Vue.use(Field)
 Vue.use(Form)
 Vue.use(Toast) // 会在vue的原型上添加一个$toast方法
+Vue.use(Dialog)
+Vue.use(Radio)
+Vue.use(RadioGroup)
+Vue.use(Uploader)
+
 new Vue({
   router,
   render: h => h(App)

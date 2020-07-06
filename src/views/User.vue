@@ -33,6 +33,9 @@
         <template>设置</template>
         <template #content></template>
       </hm-navbar>
+      <hm-navbar @click="logout">
+        <template>退出</template>
+      </hm-navbar>
     </div>
   </div>
 </template>
@@ -42,6 +45,23 @@ export default {
   data() {
     return {
       info: {}
+    }
+  },
+  methods: {
+    logout() {
+      this.$dialog.confirm({
+        title: '温馨提示',
+        message: '确定要退出登录吗？'
+      })
+        .then(() => { // 确定退出的思路
+          localStorage.removeItem('token')
+          localStorage.removeItem('userId')
+          this.$router.push('/login')
+          this.$toast.success('退出成功')
+        })
+        .catch(() => { // 取消的思路
+          this.$toast('取消退出')
+        })
     }
   },
   async created() {
