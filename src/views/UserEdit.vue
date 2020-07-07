@@ -149,7 +149,7 @@ export default {
       this.editUser({ gender: this.gender })
     },
     afterRead(file) {
-      // 只有选中上传图片之后 才会有file
+      // 只有选中上传图片之后 才会执行这个函数 才会有file
       // 这里是用的vant-ui插件的一个方法 （文件上传）按文档来的
 
       // console.log(file.file) // 有上传图像的所有信息 图片大小 类型。。。。有裁剪之后也可以不用验证了 要多大就裁剪多大

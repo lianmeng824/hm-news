@@ -31,7 +31,7 @@ export default {
   methods: {
     async getList() { // 获取数据库的数据 然后才能渲染到页面
       const res = await this.$axios.get('user_follows')
-      //   console.log(res.data)
+      console.log(res.data)
 
       const { statusCode, data } = res.data
       if (statusCode === 200) {

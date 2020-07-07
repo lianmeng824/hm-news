@@ -5,6 +5,9 @@ import Register from '../views/Register.vue'
 import User from '../views/User.vue'
 import UserEdit from '../views/UserEdit.vue'
 import MyFollow from '../views/MyFollow.vue'
+import MyComment from '../views/MyComment.vue'
+import MyStar from '../views/MyStar.vue'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -16,12 +19,14 @@ VueRouter.prototype.push = function push(location) {
 
 const router = new VueRouter({
   routes: [
+    { path: '/', component: Home, name: 'home' },
     { path: '/login', component: Login, name: 'login' },
     { path: '/register', component: Register, name: 'register' },
     { path: '/user', component: User, name: 'user' },
     { path: '/user-edit', component: UserEdit, name: 'user-edit' },
-    { path: '/myfollow', component: MyFollow }
-
+    { path: '/myfollow', component: MyFollow },
+    { path: '/mycomment', component: MyComment },
+    { path: '/mystar', component: MyStar }
   ]
 })
 
@@ -29,7 +34,7 @@ const router = new VueRouter({
 // to: 到哪儿去
 // from: 从哪儿来
 // next(): 代表放行 会继续加载渲染页面 如果没有next() 相当于直接拦截整个页面
-const pages = ['/user', '/user-edit'] // 保存所有需要登录才能访问的页面
+const pages = ['/user', '/user-edit', '/myfollow', '/mystar', '/mycomment'] // 保存所有需要登录才能访问的页面
 router.beforeEach(function(to, from, next) {
   const token = localStorage.getItem('token')
   // 如果是user页面 要判断是否有token
