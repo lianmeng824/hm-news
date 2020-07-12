@@ -67,7 +67,16 @@ export default {
         this.$toast.success(message)
         localStorage.setItem('token', data.token) // 存token
         localStorage.setItem('userId', data.user.id) // 存ID
-        this.$router.push('/user')
+        // this.$router.push('/user')
+        const backurl = localStorage.getItem('backurl')
+        if (backurl) {
+          // 如果localStorage有这个地址 直接回跳到这个地址
+          this.$router.push(backurl)
+          localStorage.removeItem('backurl')
+        } else {
+          // 如果没有这个参数 就跳到个人中心
+          this.$router.push('/user')
+        }
       } else {
         this.$toast.fail(message)
       }

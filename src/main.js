@@ -12,7 +12,8 @@ import {
   Uploader,
   List,
   Tab,
-  Tabs
+  Tabs,
+  PullRefresh
 } from 'vant'
 import './styles/common.less'
 import './styles/iconfont.less'
@@ -21,6 +22,7 @@ import HmHeader from './components/HmHeader.vue'
 import HmLogo from './components/HmLogo.vue'
 import HmNavbar from './components/HmNavbar.vue'
 import HmPost from './components/HmPost.vue'
+import HmComment from './components/HmComment.vue'
 
 //
 import axios from 'axios'
@@ -58,10 +60,38 @@ Vue.component('hm-header', HmHeader) // 全局注册公共头部组件
 Vue.component('hm-login', HmLogo)
 Vue.component('hm-navbar', HmNavbar)
 Vue.component('hm-post', HmPost)
+Vue.component('hm-comment', HmComment)
 
+// 全局的设置moment的语言环境
+moment.locale('zh-CN')
 Vue.filter('time', function(input, str = 'YYYY-MM-DD') {
   return moment(input).format(str)
 })
+
+Vue.filter('fromNow', function(input) { // 指定时间到当前时间之间的差值
+  // return moment(input).fromNow()
+  const now = Date.now()
+  const start = new Date(input)
+  const time = parseInt((now - start) / 1000)
+  // console.log(time)
+  const month = parseInt(time / 60 / 60 / 24 / 30)
+  const days = parseInt(time / 60 / 60 / 24)
+  const hours = parseInt(time / 60 / 60)
+  const minutes = parseInt(time / 60)
+  // console.log(month, days, hours, minutes, time)
+  if (month > 0) {
+    return month + '月前'
+  } else if (days > 0) {
+    return days + '天前'
+  } else if (hours > 0) {
+    return hours + '小时前'
+  } else if (minutes > 0) {
+    return minutes + '分钟前'
+  } else {
+    return time + '秒前'
+  }
+})
+
 Vue.use(Button) // 全局注册 vant-button
 Vue.use(Field)
 Vue.use(Form)
@@ -73,6 +103,7 @@ Vue.use(Uploader)
 Vue.use(List)
 Vue.use(Tab)
 Vue.use(Tabs)
+Vue.use(PullRefresh)
 
 Vue.prototype.$url = function(url) {
   // 解决图片地址不一样的问题 有网络图片 也有上传图片
@@ -82,6 +113,10 @@ Vue.prototype.$url = function(url) {
     return axios.defaults.baseURL + url
   }
 }
+
+// 创建一个bus对象 挂在vue原型上
+const bus = new Vue()
+Vue.prototype.$bus = bus
 
 new Vue({
   router,
