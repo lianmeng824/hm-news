@@ -13,7 +13,8 @@ import {
   List,
   Tab,
   Tabs,
-  PullRefresh
+  PullRefresh,
+  Sticky
 } from 'vant'
 import './styles/common.less'
 import './styles/iconfont.less'
@@ -104,6 +105,7 @@ Vue.use(List)
 Vue.use(Tab)
 Vue.use(Tabs)
 Vue.use(PullRefresh)
+Vue.use(Sticky)
 
 Vue.prototype.$url = function(url) {
   // 解决图片地址不一样的问题 有网络图片 也有上传图片

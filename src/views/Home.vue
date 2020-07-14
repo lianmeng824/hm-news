@@ -12,6 +12,12 @@
         <span class="iconfont iconwode"></span>
       </div>
     </div>
+    <van-sticky>
+      <div class="manage" @click="$router.push('/guanli')">
+        <span class="iconfont iconjiantou1"></span>
+      </div>
+    </van-sticky>
+
     <van-tabs v-model="active" sticky swiper animated swipeable>
       <van-tab :title="item.name" v-for="item in TabList" :key="item.id">
         <!-- 下拉刷新 -->
@@ -150,5 +156,18 @@ export default {
       font-size: 24px;
     }
   }
+}
+/deep/.van-tabs .van-sticky {
+  width: 90%;
+}
+.manage {
+  position: absolute;
+  right: 0;
+  width: 10%;
+  height: 44px;
+  line-height: 44px;
+  text-align: center;
+  background-color: #fff;
+  z-index: 999;
 }
 </style>

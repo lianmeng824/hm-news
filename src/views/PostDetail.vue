@@ -65,7 +65,7 @@
 <script>
 
 export default {
-  async created() {
+  created() {
     this.getpost() // 在方法里封装好了的·
     this.getCommentList()
     // 给bus注册事件

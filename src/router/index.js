@@ -10,6 +10,7 @@ import MyStar from '../views/MyStar.vue'
 import Home from '../views/Home.vue'
 import PostDetail from '../views/PostDetail.vue'
 import Search from '../views/Search.vue'
+import GuanLi from '../views/GuanLi.vue'
 
 Vue.use(VueRouter)
 
@@ -30,7 +31,8 @@ const router = new VueRouter({
     { path: '/mycomment', component: MyComment },
     { path: '/mystar', component: MyStar },
     { path: '/post-detail/:id', component: PostDetail },
-    { path: '/search', component: Search }
+    { path: '/search', component: Search },
+    { path: '/guanli', component: GuanLi }
   ]
 })
 
